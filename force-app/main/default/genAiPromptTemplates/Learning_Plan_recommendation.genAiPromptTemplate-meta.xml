@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Learning_Plan_recommendation</developerName>
+    <masterLabel>Learning Plan recommendation</masterLabel>
+    <templateVersions>
+        <content>Recommend courses for enrollment{!$RecordSnapshot:Enrollment.Snapshot}
+</content>
+        <inputs>
+            <apiName>Enrollment</apiName>
+            <definition>SOBJECT://Course_Enrollment__c</definition>
+            <masterLabel>Enrollment</masterLabel>
+            <referenceName>Input:Enrollment</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Enrollment.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Enrollment</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>QaYchCf4h5z308CVfMSIcFIYwbIniLmpaq6VBEL/WAU=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
